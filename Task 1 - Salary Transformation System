@@ -1,0 +1,31 @@
+Aim:
+To develop a program using functional transformation techniques to increase each employee's salary by 10% and display the updated salaries.
+Program:
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] salary = new int[n];
+
+        // Read salaries
+        for (int i = 0; i < n; i++) {
+            salary[i] = sc.nextInt();
+        }
+
+        // Increase each salary by 10%
+        for (int i = 0; i < n; i++) {
+            salary[i] = salary[i] + (salary[i] / 10);
+        }
+
+        // Print updated salaries
+        for (int i = 0; i < n; i++) {
+            System.out.print(salary[i] + " ");
+        }
+    }
+}
+
+Output:
+1100 2200 3300 4400 5500
