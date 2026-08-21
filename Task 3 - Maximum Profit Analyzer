@@ -1,0 +1,31 @@
+Aim
+To find the maximum possible profit from a contiguous sequence of days using Kadane’s Algorithm.
+program:
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int maxSum = sc.nextInt();
+        int currentSum = maxSum;
+
+        for (int i = 1; i < n; i++) {
+            int value = sc.nextInt();
+
+            currentSum = Math.max(value, currentSum + value);
+            maxSum = Math.max(maxSum, currentSum);
+        }
+
+        System.out.println(maxSum);
+
+        sc.close();
+    }
+}
+Sample Input:
+8
+-2 -3 4 -1 -2 1 5 -3
+Sample Output:
+7
