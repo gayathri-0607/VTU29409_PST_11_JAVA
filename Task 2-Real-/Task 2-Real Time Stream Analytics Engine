@@ -1,0 +1,53 @@
+Aim:
+To implement a Real-Time Stream Analytics Engine in Java using stream-processing concepts to filter sensor temperatures, group them by sensor ID, calculate averages, and sort the results in descending order.
+Program:
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        Map<String, List<Integer>> sensors = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            String id = sc.next();
+            int temp = sc.nextInt();
+
+            // Filter temperature > 50
+            if (temp > 50) {
+                sensors.putIfAbsent(id, new ArrayList<>());
+                sensors.get(id).add(temp);
+            }
+        }
+
+        List<String> result = new ArrayList<>(sensors.keySet());
+
+        // Sort by average temperature descending
+        result.sort((a, b) -> {
+            double avgA = sensors.get(a).stream()
+                    .mapToInt(Integer::intValue).average().getAsDouble();
+            double avgB = sensors.get(b).stream()
+                    .mapToInt(Integer::intValue).average().getAsDouble();
+
+            return Double.compare(avgB, avgA);
+        });
+
+        // Display result
+        for (String id : result) {
+            double avg = sensors.get(id).stream()
+                    .mapToInt(Integer::intValue)
+                    .average()
+                    .getAsDouble();
+
+            System.out.printf("%s %.1f%n", id, avg);
+        }
+
+        sc.close();
+    }
+}
+Sample Output:
+S1 70.0
+S2 90.0
+S3 70.0
