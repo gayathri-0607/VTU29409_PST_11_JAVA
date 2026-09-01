@@ -1,0 +1,36 @@
+Aim
+To write a Java program that determines and returns the day of the week for a given date using the day, month, and year.
+Program:
+import java.util.*;
+
+class Solution {
+    public static String dayOfTheWeek(int day, int month, int year) {
+        
+        String[] days = {
+            "Sunday", "Monday", "Tuesday", "Wednesday",
+            "Thursday", "Friday", "Saturday"
+        };
+
+        Calendar cal = Calendar.getInstance();
+
+        cal.set(year, month - 1, day);
+
+        return days[cal.get(Calendar.DAY_OF_WEEK) - 1];
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int day = sc.nextInt();
+        int month = sc.nextInt();
+        int year = sc.nextInt();
+
+        System.out.println(dayOfTheWeek(day, month, year));
+    }
+}
+Input
+day =31
+month =8
+year =2019
+Output
+"Saturday"
